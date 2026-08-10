@@ -41,15 +41,7 @@ Here is the complete feature list, grouped by area:
 ### 📜 5. Instant Certificate Generator
 - **Automatic Graduation Certificate**: Generates official PDF/image certificates with unique verification IDs (`ICARE-2026-XXXX-XXXX`) upon 100% module completion.
 
----
-
 ## 🛠️ Tech Stack & Complete Tools Inventory
-
-### ❓ Are We Using Shadcn?
-> **No, Shadcn (shadcn-svelte) is NOT used in this project.**  
-> All UI components were built **100% custom from scratch** using **Svelte 5 + TailwindCSS v4** paired with custom CSS `@keyframes` micro-animations, glassmorphism backdrops, and 3D tactile borders. This architectural decision was made to ensure full control over responsive layout behaviors, lightweight bundle sizes, and custom gamified aesthetics.
-
----
 
 ### 📦 Exhaustive Tools & Libraries Breakdown (Grouped by Role)
 
