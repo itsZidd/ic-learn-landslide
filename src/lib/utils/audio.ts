@@ -2,14 +2,14 @@
 
 class SoundManager {
 	private ctx: AudioContext | null = null;
-	private bgOsc: OscillatorNode | null = null;
-	private bgGain: GainNode | null = null;
 	private isBgPlaying = false;
 	private bgInterval: number | null = null;
 
 	private isMuted = false;
 	private sfxVolume = 0.8; // 0.0 to 1.0
 	private bgmVolume = 0.5; // 0.0 to 1.0
+	private shouldAutoPlayMusic = false;
+	private hasAttachedInteractionListener = false;
 
 	constructor() {
 		if (typeof localStorage !== 'undefined') {
@@ -18,7 +18,28 @@ class SoundManager {
 			if (sfx !== null) this.sfxVolume = parseFloat(sfx);
 			const bgm = localStorage.getItem('icare_bgm_volume');
 			if (bgm !== null) this.bgmVolume = parseFloat(bgm);
+			this.shouldAutoPlayMusic = localStorage.getItem('icare_music_active') === 'true';
 		}
+		if (typeof window !== 'undefined') {
+			this.attachUserInteractionListener();
+		}
+	}
+
+	private attachUserInteractionListener() {
+		if (this.hasAttachedInteractionListener || typeof window === 'undefined') return;
+		this.hasAttachedInteractionListener = true;
+
+		const handleUserInteraction = () => {
+			this.init();
+			if (this.shouldAutoPlayMusic && !this.isBgPlaying && !this.isMuted && this.bgmVolume > 0) {
+				this.startMusic();
+			}
+		};
+
+		window.addEventListener('pointerdown', handleUserInteraction, { passive: true });
+		window.addEventListener('click', handleUserInteraction, { passive: true });
+		window.addEventListener('keydown', handleUserInteraction, { passive: true });
+		window.addEventListener('touchstart', handleUserInteraction, { passive: true });
 	}
 
 	setMuted(muted: boolean) {
@@ -43,6 +64,9 @@ class SoundManager {
 		if (typeof localStorage !== 'undefined') {
 			localStorage.setItem('icare_bgm_volume', String(this.bgmVolume));
 		}
+		if (this.bgmVolume > 0 && this.shouldAutoPlayMusic && !this.isBgPlaying) {
+			this.startMusic();
+		}
 	}
 
 	getMuted() { return this.isMuted; }
@@ -55,7 +79,7 @@ class SoundManager {
 			this.ctx = new AudioCtx();
 		}
 		if (this.ctx && this.ctx.state === 'suspended') {
-			this.ctx.resume();
+			this.ctx.resume().catch(() => {});
 		}
 	}
 
@@ -96,8 +120,6 @@ class SoundManager {
 
 	toggleMusic(): boolean {
 		this.init();
-		if (!this.ctx) return false;
-
 		if (this.isBgPlaying) {
 			this.stopMusic();
 			return false;
@@ -108,6 +130,10 @@ class SoundManager {
 	}
 
 	startMusic() {
+		this.shouldAutoPlayMusic = true;
+		if (typeof localStorage !== 'undefined') {
+			localStorage.setItem('icare_music_active', 'true');
+		}
 		if (this.isMuted || this.bgmVolume <= 0) return;
 		this.init();
 		if (!this.ctx) return;
@@ -143,6 +169,10 @@ class SoundManager {
 	}
 
 	stopMusic() {
+		this.shouldAutoPlayMusic = false;
+		if (typeof localStorage !== 'undefined') {
+			localStorage.setItem('icare_music_active', 'false');
+		}
 		this.isBgPlaying = false;
 		if (this.bgInterval !== null) {
 			clearInterval(this.bgInterval);
@@ -151,7 +181,7 @@ class SoundManager {
 	}
 
 	get isMusicOn() {
-		return this.isBgPlaying;
+		return this.isBgPlaying || (this.shouldAutoPlayMusic && !this.isMuted && this.bgmVolume > 0);
 	}
 }
 

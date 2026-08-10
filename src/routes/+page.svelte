@@ -12,13 +12,17 @@
 	import TeacherLeaderboardModal from '$lib/components/TeacherLeaderboardModal.svelte';
 	import LoginScreen from '$lib/components/LoginScreen.svelte';
 	import SplashScreen from '$lib/components/SplashScreen.svelte';
+	import { goto } from '$app/navigation';
 	import { getProgress, saveProgress, resetProgress, calculateCompletion } from '$lib/utils/progress';
 
 	// Lucide Icons
 	import { Search, ArrowLeftRight, Download, Users, Globe, User, Award, GraduationCap } from '@lucide/svelte';
 
 	// Reactive state
-	let isMusicActive = $state(false);
+	let isMusicActive = $state(sound.isMusicOn);
+	$effect(() => {
+		isMusicActive = sound.isMusicOn;
+	});
 	let activeModal = $state<'none' | 'info' | 'exit' | 'edit-name' | 'profile' | 'progress' | 'certificate' | 'developer'>('none');
 	let infoTab = $state<'buttons' | 'attribution'>('buttons');
 
@@ -72,7 +76,7 @@
 
 	function handleCardClick(url: string) {
 		sound.playClick();
-		window.location.href = url;
+		goto(url);
 	}
 
 	function toggleAudio() {
