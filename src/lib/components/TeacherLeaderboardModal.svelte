@@ -221,11 +221,11 @@
 						<GraduationCap class="w-7 h-7 sm:w-9 sm:h-9 text-amber-200" />
 					</div>
 					<div>
-						<div class="flex items-center space-x-2">
-							<span class="px-2.5 py-0.5 bg-amber-300 text-amber-950 rounded-full text-[10px] font-black uppercase tracking-wider font-bubble">
+						<div class="flex flex-wrap items-center gap-2">
+							<span class="shrink-0 whitespace-nowrap px-2.5 py-0.5 bg-amber-300 text-amber-950 rounded-full text-[10px] font-black uppercase tracking-wider font-bubble">
 								Dashboard Guru / Pengajar
 							</span>
-							<span class="px-2 py-0.5 bg-emerald-400 text-emerald-950 rounded-full text-[10px] font-black uppercase tracking-wider">
+							<span class="shrink-0 whitespace-nowrap px-2 py-0.5 bg-emerald-400 text-emerald-950 rounded-full text-[10px] font-black uppercase tracking-wider">
 								● Online
 							</span>
 						</div>

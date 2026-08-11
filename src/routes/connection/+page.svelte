@@ -3,13 +3,13 @@
 	import { sound } from '$lib/utils/audio';
 	import { saveProgress } from '$lib/utils/progress';
 	import LandscapeBackground from '$lib/components/LandscapeBackground.svelte';
-	import videoIcon from '$lib/assets/VideoIcon.png';
-	import longsoranTranslasi from '$lib/assets/LongsoranTranslasi.png';
-	import longsoranRotasi from '$lib/assets/LongsoranRotasi.png';
-	import longsoranPergerakanBlok from '$lib/assets/LongsoranPergerakanBlok.png';
-	import jatuhanBatuan from '$lib/assets/JatuhanBatuan.png';
-	import rayapanTanah from '$lib/assets/RayapanTanah.png';
-	import aliranBahanRombakan from '$lib/assets/AliranBahanRombakan.png';
+	import videoIcon from '$lib/assets/VideoIcon.webp';
+	import longsoranTranslasi from '$lib/assets/LongsoranTranslasi.webp';
+	import longsoranRotasi from '$lib/assets/LongsoranRotasi.webp';
+	import longsoranPergerakanBlok from '$lib/assets/LongsoranPergerakanBlok.webp';
+	import jatuhanBatuan from '$lib/assets/JatuhanBatuan.webp';
+	import rayapanTanah from '$lib/assets/RayapanTanah.webp';
+	import aliranBahanRombakan from '$lib/assets/AliranBahanRombakan.webp';
 	import videoBencanaTanahLongsor from '$lib/assets/video/VideoBencanaTanahLongsor.mp4';
 
 	// Slide state (2 Slides Total)

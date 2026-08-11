@@ -1,5 +1,5 @@
 <script lang="ts">
-	import logoImg from '$lib/assets/UMLogo.png';
+	import logoImg from '$lib/assets/UMLogo.webp';
 
 	interface Props {
 		className?: string;

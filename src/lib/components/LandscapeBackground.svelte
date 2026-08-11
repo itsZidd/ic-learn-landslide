@@ -1,5 +1,5 @@
 <script lang="ts">
-	import bgImg from '$lib/assets/LandscapeBackground.png';
+	import bgImg from '$lib/assets/LandscapeBackground.webp';
 	import windSvg from '$lib/assets/Wind.svg';
 </script>
 

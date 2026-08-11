@@ -100,10 +100,13 @@ export async function POST(event: RequestEvent) {
 		const updateData = {
 			studentName: body.studentName || session.user.name || 'Siswa',
 			studentClass: body.studentClass || existingProgress?.studentClass || 'XI-GEO-1',
-			introductionCompleted: body.introductionCompleted ?? existingProgress?.introductionCompleted ?? false,
+			introductionCompleted: body.introCompleted ?? existingProgress?.introductionCompleted ?? false,
 			connectionCompleted: body.connectionCompleted ?? existingProgress?.connectionCompleted ?? false,
 			applicationCompleted: body.applicationCompleted ?? existingProgress?.applicationCompleted ?? false,
-			reflectionCompleted: body.reflectionCompleted ?? existingProgress?.reflectionCompleted ?? false,
+			reflectionCompleted:
+				body.reflectionQuizPassed !== undefined || body.reflectionEssayCompleted !== undefined
+					? !!(body.reflectionQuizPassed && body.reflectionEssayCompleted)
+					: (existingProgress?.reflectionCompleted ?? false),
 			extensionCompleted: body.extensionCompleted ?? existingProgress?.extensionCompleted ?? false,
 			quizScore: typeof body.quizScore === 'number' ? body.quizScore : (existingProgress?.quizScore ?? 0),
 			essayScore: typeof body.essayScore === 'number' ? body.essayScore : (existingProgress?.essayScore ?? 0),

@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { sound } from '$lib/utils/audio';
 	import UMLogo from '$lib/components/UMLogo.svelte';
-	import boyCharacterLogin from '$lib/assets/BoyCharacterLogin.png';
-	import girlCharacterLogin from '$lib/assets/GirlCharacterLogin.png';
-	import titleLogin from '$lib/assets/TitleLogin.png';
+	import boyCharacterLogin from '$lib/assets/BoyCharacterLogin.webp';
+	import girlCharacterLogin from '$lib/assets/GirlCharacterLogin.webp';
+	import titleLogin from '$lib/assets/TitleLogin.webp';
 	import backgroundLogin from '$lib/assets/BackgroundLogin.webp';
-	import cloudPng from '$lib/assets/Cloud.png';
+	import cloudPng from '$lib/assets/Cloud.webp';
 	import windSvg from '$lib/assets/Wind.svg';
 	import { authClient } from '$lib/auth-client';
+	import { applyServerProgress } from '$lib/utils/progress';
 	import { User, Sparkles, ArrowRight, Mail, Lock, LogIn, UserPlus, AlertTriangle, Eye, EyeOff, GraduationCap, ShieldCheck, KeyRound } from '@lucide/svelte';
 
 	interface Props {
@@ -149,6 +150,7 @@
 				try {
 					const progRes = await fetch('/api/progress');
 					const progData = await progRes.json();
+					if (progData.progress) applyServerProgress(progData.progress, nameTrimmed);
 					onLogin(nameTrimmed, emailTrimmed, progData.progress?.certificateId, undefined, progData.progress?.studentClass);
 				} catch {
 					onLogin(nameTrimmed, emailTrimmed);
@@ -195,6 +197,7 @@
 				try {
 					const progRes = await fetch('/api/progress');
 					const progData = await progRes.json();
+					if (progData.progress) applyServerProgress(progData.progress, fetchedName);
 					onLogin(fetchedName, emailTrimmed, progData.progress?.certificateId, undefined, progData.progress?.studentClass);
 				} catch {
 					onLogin(fetchedName, emailTrimmed);

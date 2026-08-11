@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { sound } from '$lib/utils/audio';
-	import umLogo from '$lib/assets/UMLogo.png';
+	import umLogo from '$lib/assets/UMLogo.webp';
 	import { getProgress, saveProgress } from '$lib/utils/progress';
 
 	interface Props {

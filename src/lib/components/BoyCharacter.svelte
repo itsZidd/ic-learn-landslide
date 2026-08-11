@@ -1,5 +1,5 @@
 <script lang="ts">
-	import boyImg from '$lib/assets/BoyCharacter.png';
+	import boyImg from '$lib/assets/BoyCharacter.webp';
 
 	interface Props {
 		className?: string;

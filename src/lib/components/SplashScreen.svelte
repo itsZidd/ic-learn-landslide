@@ -2,8 +2,8 @@
 	import { onMount } from 'svelte';
 	import UMLogo from '$lib/components/UMLogo.svelte';
 	import girlCycling from '$lib/assets/GirlCycling.svg';
-	import cloudPng from '$lib/assets/Cloud.png';
-	import titleLogin from '$lib/assets/TitleLogin.png';
+	import cloudPng from '$lib/assets/Cloud.webp';
+	import titleLogin from '$lib/assets/TitleLogin.webp';
 
 	interface Props {
 		onFinish: () => void;
@@ -53,28 +53,28 @@
 </script>
 
 <!-- OFF-WHITE DEDICATED STANDALONE SPLASH CONTAINER -->
-<div class={`fixed inset-0 z-50 w-full h-full min-h-screen lg:h-screen lg:h-dvh flex flex-col justify-between p-4 sm:p-6 select-none font-bubble overflow-hidden bg-[#faf9f5] transition-all duration-700 ease-in-out ${isFadingOut ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'}`}>
+<div class={`fixed inset-0 z-50 w-full h-full min-h-screen lg:h-screen lg:h-dvh flex flex-col justify-between p-4 sm:p-6 [@media(max-height:580px)]:p-2 select-none font-bubble overflow-y-auto bg-[#faf9f5] transition-all duration-700 ease-in-out ${isFadingOut ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'}`}>
 	
 	<!-- SUBTLE OFF-WHITE DECORATION ACCENTS -->
-	<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-amber-200/25 blur-3xl pointer-events-none animate-pulse-glow"></div>
+	<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] [@media(max-height:580px)]:w-64 [@media(max-height:580px)]:h-64 [@media(max-height:580px)]:-top-16 rounded-full bg-amber-200/25 blur-3xl pointer-events-none animate-pulse-glow"></div>
 	
 	<!-- Floating Cloud.png Assets -->
 	<div class="absolute top-10 left-6 sm:left-16 opacity-80 animate-drift-slow pointer-events-none">
 		<img src={cloudPng} alt="Awan 1" class="w-36 sm:w-56 md:w-64 h-auto drop-shadow-md" />
 	</div>
-	<div class="absolute top-24 right-6 sm:right-20 opacity-70 animate-drift-reverse pointer-events-none">
+	<div class="absolute top-24 right-6 sm:right-20 opacity-70 animate-drift-reverse pointer-events-none [@media(max-height:580px)]:hidden">
 		<img src={cloudPng} alt="Awan 2" class="w-44 sm:w-64 md:w-72 h-auto drop-shadow-md" />
 	</div>
 
 	<!-- TOP HEADER BAR: UNIVERSITAS NEGERI MALANG SHOWCASE WITH EASE IN/OUT ANIMATION -->
-	<header class="relative z-10 w-full max-w-7xl mx-auto flex items-center justify-between shrink-0">
-		
+	<header class="relative z-10 w-full max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 shrink-0">
+
 		<!-- UNIVERSITAS NEGERI MALANG LOGO & TITLE BADGE (Animated Ease-In/Out) -->
-		<div class="flex items-center space-x-3 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border-3 border-amber-300 shadow-xl animate-logo-ease">
+		<div class="flex items-center space-x-3 bg-white/95 backdrop-blur-md px-4 py-2 [@media(max-height:580px)]:py-1 rounded-2xl border-3 border-amber-300 shadow-xl animate-logo-ease shrink-0">
 			<!-- Glowing UM Logo Badge -->
 			<div class="relative flex items-center justify-center">
 				<div class="absolute inset-0 rounded-full bg-amber-400/30 blur-md animate-ping-slow"></div>
-				<UMLogo className="w-11 h-11 sm:w-14 sm:h-14 drop-shadow-md relative z-10 shrink-0" />
+				<UMLogo className="w-11 h-11 sm:w-14 sm:h-14 [@media(max-height:580px)]:w-8 [@media(max-height:580px)]:h-8 drop-shadow-md relative z-10 shrink-0" />
 			</div>
 			<!-- Animated Typography -->
 			<div class="flex flex-col text-left font-bubble">
@@ -91,7 +91,7 @@
 		</div>
 
 		<!-- TOP RIGHT BADGE -->
-		<div class="px-3.5 py-1.5 bg-amber-400 text-amber-950 rounded-full font-extrabold text-xs sm:text-sm border-2 border-white shadow-md uppercase tracking-wider animate-pulse">
+		<div class="shrink-0 whitespace-nowrap px-3.5 py-1.5 bg-amber-400 text-amber-950 rounded-full font-extrabold text-xs sm:text-sm border-2 border-white shadow-md uppercase tracking-wider animate-pulse">
 			⚡ Splash Loading
 		</div>
 	</header>
@@ -100,28 +100,28 @@
 	<div class="relative z-10 w-full max-w-4xl mx-auto my-auto flex flex-col items-center justify-center text-center py-2">
 		
 		<!-- APP TITLE BANNER (Extra Large Prominent Title) -->
-		<div class="mb-3 sm:mb-4 transform hover:scale-105 transition-transform animate-title-bounce">
+		<div class="mb-3 sm:mb-4 [@media(max-height:580px)]:mb-1 transform hover:scale-105 transition-transform animate-title-bounce">
 			<img
 				src={titleLogin}
 				alt="I-CARE LANDSLIDE Title"
-				class="h-28 sm:h-40 md:h-52 lg:h-60 w-auto object-contain mx-auto drop-shadow-2xl"
+				class="h-28 sm:h-40 md:h-52 lg:h-60 [@media(max-height:580px)]:h-14 w-auto object-contain mx-auto drop-shadow-2xl"
 			/>
-			<div class="inline-block mt-2 px-5 py-1.5 bg-amber-400 text-amber-950 border-2 border-white shadow-md rounded-full text-xs sm:text-sm font-extrabold tracking-wide uppercase">
+			<div class="inline-block mt-2 [@media(max-height:580px)]:mt-1 px-5 py-1.5 bg-amber-400 text-amber-950 border-2 border-white shadow-md rounded-full text-xs sm:text-sm font-extrabold tracking-wide uppercase">
 				🗺️ E-Modul Kebencanaan Longsor Kec. Jabung
 			</div>
 		</div>
 
 		<!-- FEATURED ANIMATED GIRL CYCLING ILLUSTRATION (Proper scale & proportions on off-white canvas) -->
-		<div class="relative w-full max-w-md sm:max-w-lg lg:max-w-xl my-2 flex items-center justify-center">
+		<div class="relative w-full max-w-md sm:max-w-lg lg:max-w-xl my-2 [@media(max-height:580px)]:my-1 flex items-center justify-center">
 			<img
 				src={girlCycling}
 				alt="Gadis Bersepeda Interaktif"
-				class="w-72 sm:w-96 md:w-[460px] h-auto object-contain drop-shadow-xl animate-cycling-float"
+				class="w-72 sm:w-96 md:w-[460px] [@media(max-height:580px)]:w-28 h-auto object-contain drop-shadow-xl animate-cycling-float"
 			/>
 		</div>
 
 		<!-- GAME 3D PROGRESS BAR & STATUS -->
-		<div class="w-full max-w-md sm:max-w-lg px-4 mt-2 space-y-2 font-sans">
+		<div class="w-full max-w-md sm:max-w-lg px-4 mt-2 [@media(max-height:580px)]:mt-1 space-y-2 [@media(max-height:580px)]:space-y-1 font-sans">
 			<!-- Percentage Badge & Status Text -->
 			<div class="flex items-center justify-between font-bubble text-xs sm:text-sm font-black text-slate-800 px-1">
 				<span class="flex items-center space-x-2 truncate">
@@ -145,7 +145,7 @@
 			</div>
 
 			<!-- Footer Tip -->
-			<p class="text-[11px] sm:text-xs font-bold text-slate-500 italic text-center">
+			<p class="text-[11px] sm:text-xs font-bold text-slate-500 italic text-center [@media(max-height:580px)]:hidden">
 				Dikembangkan untuk Riset Pembelajaran Geografi Kebencanaan
 			</p>
 		</div>

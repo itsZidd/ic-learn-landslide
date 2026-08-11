@@ -4,11 +4,11 @@
 	import { saveProgress } from '$lib/utils/progress';
 	import LandscapeBackground from '$lib/components/LandscapeBackground.svelte';
 	import videoPembentukanGunung from '$lib/assets/video/VideoPembentukanGunung.mp4';
-	import videoIcon from '$lib/assets/VideoIcon.png';
-	import petaTektonikIndonesia from '$lib/assets/PetaTektonikIndonesia.png';
-	import lempengTektonik from '$lib/assets/LempengTektonik.png';
-	import petaTopografiKabupatenMalang from '$lib/assets/PetaTopografiKabupatenMalang.png';
-	import bentukPermukaanKecamatanJabung from '$lib/assets/BentukPermukaanKecamatanJabung.png';
+	import videoIcon from '$lib/assets/VideoIcon.webp';
+	import petaTektonikIndonesia from '$lib/assets/PetaTektonikIndonesia.webp';
+	import lempengTektonik from '$lib/assets/LempengTektonik.webp';
+	import petaTopografiKabupatenMalang from '$lib/assets/PetaTopografiKabupatenMalang.webp';
+	import bentukPermukaanKecamatanJabung from '$lib/assets/BentukPermukaanKecamatanJabung.webp';
 
 	// Slide state (4 Slides Total)
 	let currentSlide = $state(1);
@@ -250,13 +250,13 @@
 
 							<!-- Connector 2: Fork Split SVG -->
 							<div class="w-full flex justify-center my-0.5">
-								<svg class="w-full max-w-md h-8 text-slate-700 overflow-visible" viewBox="0 0 400 32" fill="none" stroke="currentColor" stroke-width="2.5">
-									<line x1="200" y1="0" x2="200" y2="14" />
-									<line x1="75" y1="14" x2="325" y2="14" />
-									<line x1="75" y1="14" x2="75" y2="24" />
-									<polygon points="75,32 70,22 80,22" fill="currentColor" stroke="none" />
-									<line x1="325" y1="14" x2="325" y2="24" />
-									<polygon points="325,32 320,22 330,22" fill="currentColor" stroke="none" />
+								<svg class="w-full max-w-md h-8 text-slate-700 overflow-visible" viewBox="0 0 300 32" fill="none" stroke="currentColor" stroke-width="3">
+									<line x1="150" y1="0" x2="150" y2="14" />
+									<line x1="56" y1="14" x2="244" y2="14" />
+									<line x1="56" y1="14" x2="56" y2="20" />
+									<polygon points="56,32 48,18 64,18" fill="currentColor" stroke="none" />
+									<line x1="244" y1="14" x2="244" y2="20" />
+									<polygon points="244,32 236,18 252,18" fill="currentColor" stroke="none" />
 								</svg>
 							</div>
 
@@ -277,12 +277,12 @@
 
 							<!-- Connector 3: Merge SVG -->
 							<div class="w-full flex justify-center my-0.5">
-								<svg class="w-full max-w-md h-8 text-slate-700 overflow-visible" viewBox="0 0 400 32" fill="none" stroke="currentColor" stroke-width="2.5">
-									<line x1="75" y1="0" x2="75" y2="14" />
-									<line x1="325" y1="0" x2="325" y2="14" />
-									<line x1="75" y1="14" x2="325" y2="14" />
-									<line x1="200" y1="14" x2="200" y2="24" />
-									<polygon points="200,32 195,22 205,22" fill="currentColor" stroke="none" />
+								<svg class="w-full max-w-md h-8 text-slate-700 overflow-visible" viewBox="0 0 300 32" fill="none" stroke="currentColor" stroke-width="3">
+									<line x1="56" y1="0" x2="56" y2="14" />
+									<line x1="244" y1="0" x2="244" y2="14" />
+									<line x1="56" y1="14" x2="244" y2="14" />
+									<line x1="150" y1="14" x2="150" y2="20" />
+									<polygon points="150,32 142,18 158,18" fill="currentColor" stroke="none" />
 								</svg>
 							</div>
 

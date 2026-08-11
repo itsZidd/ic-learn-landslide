@@ -306,9 +306,9 @@
 						</button>
 					</div>
 					<!-- Progress Summary Bar -->
-					<div class="mt-2 pt-2 border-t border-white/20 flex items-center justify-between text-xs">
+					<div class="mt-2 pt-2 border-t border-white/20 flex flex-wrap items-center justify-between gap-1.5 text-xs">
 						<span class="font-medium text-amber-100 text-[11px] sm:text-xs">Progres Pembelajaran: <strong class="text-white font-bold">{completionPercentage}%</strong></span>
-						<span class="bg-white/20 px-2 py-0.5 rounded-full font-bold text-[10px] sm:text-[11px]">
+						<span class="shrink-0 whitespace-nowrap bg-white/20 px-2 py-0.5 rounded-full font-bold text-[10px] sm:text-[11px]">
 							{completionPercentage === 100 ? '🎓 Sertifikat Siap' : '📖 Dalam Proses'}
 						</span>
 					</div>
@@ -389,12 +389,12 @@
 
 					<!-- REKAP NILAI TERBAIK (BEST SCORES DASHBOARD) -->
 					<div class="bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-purple-500/10 rounded-2xl p-4 border-2 border-amber-300 space-y-3 font-sans">
-						<div class="flex items-center justify-between">
+						<div class="flex flex-wrap items-center justify-between gap-1.5">
 							<h5 class="text-xs font-black uppercase text-amber-950 tracking-wider flex items-center space-x-1.5 font-bubble">
 								<span>🏆</span>
 								<span>Rekap Nilai Terbaik Siswa</span>
 							</h5>
-							<span class="text-[10px] font-extrabold px-2 py-0.5 bg-amber-400 text-amber-950 rounded-full font-bubble">
+							<span class="shrink-0 whitespace-nowrap text-[10px] font-extrabold px-2 py-0.5 bg-amber-400 text-amber-950 rounded-full font-bubble">
 								Skor Tertinggi
 							</span>
 						</div>

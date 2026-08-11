@@ -106,6 +106,62 @@ export function saveProgress(updated: Partial<StudentProgress>): StudentProgress
 	return next;
 }
 
+// Row shape returned by GET /api/progress (see src/lib/server/db/schema.ts).
+interface ServerProgressRow {
+	studentName?: string;
+	studentClass?: string;
+	certificateId?: string;
+	introductionCompleted?: boolean;
+	connectionCompleted?: boolean;
+	applicationCompleted?: boolean;
+	reflectionCompleted?: boolean;
+	extensionCompleted?: boolean;
+	quizScore?: number;
+	essayScore?: number;
+	essayAttempts?: number;
+	latestEssayAnswerA?: string;
+	latestEssayAnswerB?: string;
+	latestEssayAnswerC?: string;
+	latestEssayFeedback?: string;
+	latestEssayRubric?: string;
+}
+
+// Hydrates localStorage from the account's server-side progress row (Turso).
+// localStorage is scoped per-origin, so without this a student logging into
+// the same account from a different origin (e.g. localhost vs the Vercel
+// deployment) would see two independently-drifting copies of their progress.
+export function applyServerProgress(serverProgress: ServerProgressRow, fallbackName?: string): StudentProgress {
+	let rubric: { a: number; b: number; c: number } | undefined;
+	if (serverProgress.latestEssayRubric) {
+		try {
+			rubric = JSON.parse(serverProgress.latestEssayRubric);
+		} catch {
+			rubric = undefined;
+		}
+	}
+
+	return saveProgress({
+		studentName: serverProgress.studentName || fallbackName || 'Siswa',
+		studentClass: serverProgress.studentClass || 'XI-GEO-1',
+		certificateId: serverProgress.certificateId || '',
+		introCompleted: !!serverProgress.introductionCompleted,
+		connectionCompleted: !!serverProgress.connectionCompleted,
+		applicationCompleted: !!serverProgress.applicationCompleted,
+		appSubModulesCompleted: serverProgress.applicationCompleted ? [true, true, true, true] : [false, false, false, false],
+		reflectionQuizPassed: !!serverProgress.reflectionCompleted,
+		reflectionEssayCompleted: !!serverProgress.reflectionCompleted,
+		extensionCompleted: !!serverProgress.extensionCompleted,
+		quizScore: serverProgress.quizScore ?? 0,
+		essayScore: serverProgress.essayScore ?? 0,
+		essayAttemptsCount: serverProgress.essayAttempts ?? 0,
+		latestEssayAnswerA: serverProgress.latestEssayAnswerA ?? '',
+		latestEssayAnswerB: serverProgress.latestEssayAnswerB ?? '',
+		latestEssayAnswerC: serverProgress.latestEssayAnswerC ?? '',
+		latestEssayFeedback: serverProgress.latestEssayFeedback ?? '',
+		...(rubric ? { latestEssayRubric: rubric } : {})
+	});
+}
+
 export function resetProgress(): StudentProgress {
 	const initial: StudentProgress = {
 		studentName: 'Siswa',

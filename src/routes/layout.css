@@ -1,5 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&family=Quicksand:wght@600;700&family=Outfit:wght@600;700;800;900&display=swap');
 @import 'tailwindcss';
+
+/* Self-hosted fonts (previously loaded from fonts.googleapis.com): a remote
+   @import made font loading depend on Google's CDN being reachable, which
+   ad-blockers/privacy extensions and some networks block — text would
+   silently fall back to a system font with no error. Bundling the files
+   removes that external dependency entirely. */
+@font-face {
+	font-family: 'Fredoka';
+	font-style: normal;
+	font-weight: 500 700;
+	font-display: swap;
+	src: url('$lib/assets/fonts/Fredoka-Variable.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Outfit';
+	font-style: normal;
+	font-weight: 600 900;
+	font-display: swap;
+	src: url('$lib/assets/fonts/Outfit-Variable.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Quicksand';
+	font-style: normal;
+	font-weight: 600 700;
+	font-display: swap;
+	src: url('$lib/assets/fonts/Quicksand-Variable.woff2') format('woff2');
+}
 
 :root {
 	font-family: 'Quicksand', 'Outfit', system-ui, -apple-system, sans-serif;

@@ -140,32 +140,54 @@ class SoundManager {
 		if (this.isBgPlaying) return;
 		this.isBgPlaying = true;
 
-		// Play a friendly playful 4-note arpeggio loop (C major 7th: C4, E4, G4, B4)
-		const notes = [261.63, 329.63, 392.00, 493.88, 523.25, 392.00, 329.63];
-		let noteIdx = 0;
+		// Gentle I-vi-IV-V7 chord progression, arpeggiated, so the loop cycles
+		// through four different chords instead of repeating the same notes.
+		const chords = [
+			{ notes: [261.63, 329.63, 392.00, 493.88], bass: 130.81 }, // Cmaj7
+			{ notes: [220.00, 261.63, 329.63, 392.00], bass: 110.00 }, // Am7
+			{ notes: [174.61, 220.00, 261.63, 329.63], bass: 87.31 },  // Fmaj7
+			{ notes: [196.00, 246.94, 293.66, 349.23], bass: 98.00 }   // G7
+		];
+		const arpPattern = [0, 1, 2, 3, 2, 1]; // up then down, no repeated endpoints
+		let chordIdx = 0;
+		let stepIdx = 0;
+
+		const playNote = (freq: number, startTime: number, duration: number, peakGain: number, type: OscillatorType) => {
+			if (!this.ctx) return;
+			const osc = this.ctx.createOscillator();
+			const gain = this.ctx.createGain();
+			osc.type = type;
+			osc.frequency.setValueAtTime(freq, startTime);
+			gain.gain.setValueAtTime(peakGain, startTime);
+			gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+			osc.connect(gain);
+			gain.connect(this.ctx.destination);
+			osc.start(startTime);
+			osc.stop(startTime + duration);
+		};
 
 		this.bgInterval = window.setInterval(() => {
 			if (!this.isBgPlaying || !this.ctx || this.isMuted || this.bgmVolume <= 0) return;
 			try {
-				const osc = this.ctx.createOscillator();
-				const gain = this.ctx.createGain();
-				osc.type = 'sine';
-				osc.frequency.setValueAtTime(notes[noteIdx], this.ctx.currentTime);
-				const peakGain = 0.05 * this.bgmVolume;
-				gain.gain.setValueAtTime(peakGain, this.ctx.currentTime);
-				gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.35);
+				const chord = chords[chordIdx];
+				const now = this.ctx.currentTime;
 
-				osc.connect(gain);
-				gain.connect(this.ctx.destination);
+				// New chord: lay a soft sustained bass note under the arpeggio
+				if (stepIdx === 0) {
+					playNote(chord.bass, now, arpPattern.length * 0.34, 0.05 * this.bgmVolume, 'triangle');
+				}
 
-				osc.start();
-				osc.stop(this.ctx.currentTime + 0.35);
+				playNote(chord.notes[arpPattern[stepIdx]], now, 0.32, 0.09 * this.bgmVolume, 'sine');
 
-				noteIdx = (noteIdx + 1) % notes.length;
+				stepIdx++;
+				if (stepIdx >= arpPattern.length) {
+					stepIdx = 0;
+					chordIdx = (chordIdx + 1) % chords.length;
+				}
 			} catch (e) {
 				console.error(e);
 			}
-		}, 400);
+		}, 340);
 	}
 
 	stopMusic() {

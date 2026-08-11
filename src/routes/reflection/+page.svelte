@@ -2,14 +2,13 @@
 	import { onMount } from 'svelte';
 	import { sound } from '$lib/utils/audio';
 	import LandscapeBackground from '$lib/components/LandscapeBackground.svelte';
-	import girlCharacter2 from '$lib/assets/GirlCharacter2.png';
-	import boyCharacterPassed from '$lib/assets/BoyCharacterPassed.png';
-	import boyCharacterFailed from '$lib/assets/BoyCharacterFailed.png';
-	import petaJabung from '$lib/assets/PetaKerawananLongsorKecamatanJabung.png';
-	import topografiDusunKrajan1 from '$lib/assets/TopografiDusunKrajan1.png';
-	import soal7Gambar from '$lib/assets/Soal7Gambar.jpg';
-	import soal10Gambar from '$lib/assets/Soal10Gambar.png';
-	import CertificateModal from '$lib/components/CertificateModal.svelte';
+	import girlCharacter2 from '$lib/assets/GirlCharacter2.webp';
+	import boyCharacterPassed from '$lib/assets/BoyCharacterPassed.webp';
+	import boyCharacterFailed from '$lib/assets/BoyCharacterFailed.webp';
+	import petaJabung from '$lib/assets/PetaKerawananLongsorKecamatanJabung.webp';
+	import topografiDusunKrajan1 from '$lib/assets/TopografiDusunKrajan1.webp';
+	import soal7Gambar from '$lib/assets/Soal7Gambar.webp';
+	import soal10Gambar from '$lib/assets/Soal10Gambar.webp';
 	import { saveProgress, getProgress } from '$lib/utils/progress';
 	import { env } from '$env/dynamic/public';
 
@@ -24,7 +23,6 @@
 	let essayAnswerB = $state('');
 	let essayAnswerC = $state('');
 	
-	let isCertificateOpen = $state(false);
 	let isEssayReviewModalOpen = $state(false);
 	let isMapZoomed = $state(false);
 	let zoomedImage = $state<{ src: string; alt: string; title: string } | null>(null);
@@ -298,11 +296,6 @@ Kecamatan Jabung merupakan wilayah yang sering terjadi longsor dengan tipe trans
 		activeMode = 'review';
 	}
 
-	function openCertificate() {
-		sound.playClick();
-		isCertificateOpen = true;
-	}
-
 	function simulateResultScreen(passed: boolean) {
 		sound.playClick();
 		devSimulatePass = passed;
@@ -420,12 +413,6 @@ Kecamatan Jabung merupakan wilayah yang sering terjadi longsor dengan tipe trans
 		};
 	}
 </script>
-
-<!-- Certificate Modal Component -->
-<CertificateModal
-	isOpen={isCertificateOpen}
-	onClose={() => (isCertificateOpen = false)}
-/>
 
 <!-- Essay Review Per Soal Modal Component -->
 {#if isEssayReviewModalOpen}
@@ -702,7 +689,7 @@ Kecamatan Jabung merupakan wilayah yang sering terjadi longsor dengan tipe trans
 						</h2>
 
 						<p class="text-sm sm:text-base md:text-lg text-gray-800 leading-relaxed font-medium text-justify max-w-3xl mx-auto">
-							Hai zidan!, Pada halaman ini kamu akan mengerjakan soal evaluasi dalam bentuk soal pilihan ganda sebanyak 10 soal dan soal essay analisis. Pilihlah jawaban dengan mengeklik jawaban yang kamu anggap paling benar. Untuk mulai mengerjakan soal, silahkan klik tombol di bawah ini:
+							Hai {studentProgressState.studentName}!, Pada halaman ini kamu akan mengerjakan soal evaluasi dalam bentuk soal pilihan ganda sebanyak 10 soal dan soal essay analisis. Pilihlah jawaban dengan mengeklik jawaban yang kamu anggap paling benar. Untuk mulai mengerjakan soal, silahkan klik tombol di bawah ini:
 						</p>
 
 						<!-- 3D Blue Action Buttons Side-by-Side -->
@@ -730,22 +717,24 @@ Kecamatan Jabung merupakan wilayah yang sering terjadi longsor dengan tipe trans
 							</button>
 						</div>
 
-						<!-- DEV SIMULATION QUICK TOOLBAR -->
-						<div class="pt-4 border-t border-gray-200 flex flex-wrap items-center justify-center gap-2 text-xs">
-							<span class="font-bold text-gray-400 font-mono">⚡ Dev Tools:</span>
-							<button
-								onclick={() => simulateResultScreen(true)}
-								class="px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-lg border border-emerald-300 hover:bg-emerald-200"
-							>
-								Simulasi Lulus (100%)
-							</button>
-							<button
-								onclick={() => simulateResultScreen(false)}
-								class="px-2.5 py-1 bg-rose-100 text-rose-800 font-bold rounded-lg border border-rose-300 hover:bg-rose-200"
-							>
-								Simulasi Gagal (0%)
-							</button>
-						</div>
+						{#if showDevTools}
+							<!-- DEV SIMULATION QUICK TOOLBAR -->
+							<div class="pt-4 border-t border-gray-200 flex flex-wrap items-center justify-center gap-2 text-xs">
+								<span class="font-bold text-gray-400 font-mono">⚡ Dev Tools:</span>
+								<button
+									onclick={() => simulateResultScreen(true)}
+									class="px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-lg border border-emerald-300 hover:bg-emerald-200"
+								>
+									Simulasi Lulus (100%)
+								</button>
+								<button
+									onclick={() => simulateResultScreen(false)}
+									class="px-2.5 py-1 bg-rose-100 text-rose-800 font-bold rounded-lg border border-rose-300 hover:bg-rose-200"
+								>
+									Simulasi Gagal (0%)
+								</button>
+							</div>
+						{/if}
 					</div>
 
 				{:else if activeMode === 'quiz'}
@@ -969,7 +958,7 @@ Kecamatan Jabung merupakan wilayah yang sering terjadi longsor dengan tipe trans
 
 						<!-- Status Text -->
 						<p class="text-sm sm:text-xl font-bold text-gray-800 font-sans">
-							{isPassed ? 'Selamat zidan, kamu lulus!' : 'Maaf zidan, kamu belum lulus'}
+							{isPassed ? `Selamat ${studentProgressState.studentName}, kamu lulus!` : `Maaf ${studentProgressState.studentName}, kamu belum lulus`}
 						</p>
 
 						<!-- Two Metric Cards -->
@@ -998,21 +987,6 @@ Kecamatan Jabung merupakan wilayah yang sering terjadi longsor dengan tipe trans
 								</div>
 							</div>
 						</div>
-
-						<!-- IF PASSED: PROMINENT GOLD CERTIFICATE DOWNLOAD BUTTON -->
-						{#if isPassed}
-							<div class="pt-1 font-bubble animate-bounce-short">
-								<button
-									onclick={openCertificate}
-									onmouseenter={() => sound.playCardHover()}
-									class="w-full py-3 px-6 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 border-3 border-white shadow-2xl rounded-2xl text-amber-950 font-extrabold text-base sm:text-lg tracking-wide transform active:scale-95 transition-all hover:scale-[1.02] flex items-center justify-center space-x-2 cursor-pointer"
-									style="box-shadow: 0 4px 0 0 #78350f, 0 8px 20px rgba(0, 0, 0, 0.3);"
-								>
-									<span class="text-xl">🎓</span>
-									<span>LIHAT & UNDUH SERTIFIKAT KELULUSAN</span>
-								</button>
-							</div>
-						{/if}
 
 						<!-- Bottom Action Buttons: COBA LAGI & LIHAT PEMBAHASAN -->
 						<div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 pt-1 font-bubble">
