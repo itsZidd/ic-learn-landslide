@@ -159,7 +159,7 @@
 					onmouseenter={() => sound.playCardHover()}
 					aria-label="Dashboard Guru & Leaderboard"
 					title="Rekap Nilai Terbaik Siswa (Dashboard Guru)"
-					class="group relative px-2.5 sm:px-3.5 h-10 sm:h-12 rounded-2xl bg-gradient-to-b from-amber-400 to-amber-600 border-2 border-white shadow-md flex items-center justify-center space-x-1.5 text-amber-950 font-black text-xs sm:text-sm transform active:scale-95 transition-all hover:scale-105 font-bubble"
+					class="group relative w-10 sm:w-auto h-10 sm:h-12 sm:px-3.5 rounded-2xl bg-gradient-to-b from-amber-400 to-amber-600 border-2 border-white shadow-md flex items-center justify-center gap-1.5 text-amber-950 font-black text-xs sm:text-sm transform active:scale-95 transition-all hover:scale-105 font-bubble"
 					style="box-shadow: 0 5px 0 0 #78350f, 0 8px 15px rgba(0, 0, 0, 0.2);"
 				>
 					<span class="absolute inset-x-2 top-1 h-1.5 bg-white/40 rounded-full"></span>
