@@ -211,7 +211,7 @@
 	}
 </script>
 
-<div class="fixed inset-0 z-50 w-full h-full min-h-screen lg:h-screen lg:h-dvh overflow-y-auto lg:overflow-hidden flex flex-col justify-between p-2 sm:p-4 select-none font-bubble bg-sky-900 animate-fade-in relative">
+<div class="fixed inset-0 z-50 w-full h-full min-h-screen lg:h-screen lg:h-dvh overflow-y-auto flex flex-col justify-between p-2 sm:p-4 select-none font-bubble bg-sky-900 animate-fade-in relative">
 	
 	<!-- Background Login Image with Instant High Priority Loading & Solid Fallback -->
 	<div class="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none bg-sky-900">

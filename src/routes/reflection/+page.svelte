@@ -596,7 +596,7 @@ Kecamatan Jabung merupakan wilayah yang sering terjadi longsor dengan tipe trans
 {/if}
 
 <!-- Responsive Container: Fixed height on large screens, Scrollable on mobile/small screens -->
-<main class="relative min-h-screen lg:h-screen lg:h-dvh w-full overflow-y-auto lg:overflow-hidden flex flex-col justify-between p-3 sm:p-5 select-none font-bubble">
+<main class="relative min-h-screen lg:h-screen lg:h-dvh w-full overflow-y-auto flex flex-col justify-between p-3 sm:p-5 select-none font-bubble">
 	<!-- Landscape Vector Environment Background -->
 	<LandscapeBackground />
 
