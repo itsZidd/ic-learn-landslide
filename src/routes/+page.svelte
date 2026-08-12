@@ -242,7 +242,7 @@
 	</header>
 
 	<!-- MAIN CONTENT AREA -->
-	<div class="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col items-center justify-between min-h-0 py-1">
+	<div class="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col items-center justify-between py-1">
 		<!-- CENTER TOP TITLE: PROMINENT TITLE GRAPHIC (Larger & Perfectly Centered with generous breathing room) -->
 		<div class="w-full flex items-center justify-center text-center shrink-0 my-4 sm:my-3 lg:my-2 py-3 sm:py-2 lg:py-1 font-bubble transform hover:scale-105 transition-transform duration-300">
 			<Title className="h-24 sm:h-40 md:h-52 lg:h-60 w-auto max-w-[85vw] sm:max-w-none object-contain mx-auto drop-shadow-2xl" />
@@ -274,7 +274,7 @@
 			</div>
 		{:else}
 			<!-- CONTENT BODY: Girl Left (3 cols) - Cards Grid Center (6 cols) - Boy Right (3 cols) -->
-			<div class="w-full flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 items-center justify-between gap-3 sm:gap-4 px-2">
+			<div class="w-full flex-1 grid grid-cols-1 lg:grid-cols-12 items-center justify-between gap-3 sm:gap-4 px-2">
 
 				<!-- LEFT COLUMN: Girl & Fluffy Dashed Cloud Thought Bubble Floating Above -->
 				<div class="hidden lg:flex lg:col-span-3 flex-col items-center justify-end h-full max-h-full pb-1 sm:pb-2 w-full">

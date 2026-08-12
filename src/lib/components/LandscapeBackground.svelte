@@ -3,7 +3,7 @@
 	import windSvg from '$lib/assets/Wind.svg';
 </script>
 
-<div class="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
+<div class="fixed inset-0 overflow-hidden pointer-events-none select-none z-0">
 	<!-- Background Scenery Base with High-Priority GPU Rendering -->
 	<img
 		src={bgImg}

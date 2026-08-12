@@ -1438,7 +1438,7 @@ Kecamatan Jabung merupakan wilayah yang sering terjadi longsor dengan tipe trans
 				<img
 					src={girlCharacter2}
 					alt="Girl Character"
-					class="hidden lg:block absolute -bottom-6 -left-12 xl:-left-16 w-32 md:w-40 lg:w-44 h-auto z-0 pointer-events-none drop-shadow-xl animate-sway"
+					class="hidden lg:block absolute -bottom-6 -left-20 xl:-left-24 w-24 xl:w-28 h-auto z-0 pointer-events-none drop-shadow-xl animate-sway"
 					style="will-change: transform; transform-origin: bottom center;"
 				/>
 			{/if}
