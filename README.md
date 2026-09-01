@@ -107,7 +107,7 @@ Here is the complete feature list, grouped by area:
 
 ---
 
-## 📖 A Story Worth Telling
+## 📖 Engineering Notes
 
 ### 💬 1. Why We Left Articulate Storyline 360
 
@@ -122,12 +122,12 @@ Before committing to that scope, the course was inventoried directly from `data.
 ### 💡 2. The AI Prompt Alignment Challenge (Soal B Evaluation)
 During early testing, the Gemini AI evaluator incorrectly penalized students on **Soal B** (which asks for the 4 thematic maps needed for landslide risk mapping: *rainfall, slope/topography, geology, and land use*). The AI was misapplying generic prompt instructions from Soal A and expecting students to discuss "longsor translasi" instead of thematic mapping.
 
-To fix this, we re-engineered the prompt architecture in [`src/routes/api/evaluate-essay/+server.ts`](file:///c:/Users/Zidan/Documents/IC-LEARN/src/routes/api/evaluate-essay/+server.ts). We added strict negative constraints telling Gemini: *"Soal B is strictly about thematic maps (curah hujan, lereng, geologi, penggunaan lahan). Do NOT demand mentions of longsor translasi for Soal B."* This eliminated false negatives and aligned AI scores with geography teaching standards.
+To fix this, we re-engineered the prompt architecture in [`src/routes/api/evaluate-essay/+server.ts`](src/routes/api/evaluate-essay/+server.ts). We added strict negative constraints telling Gemini: *"Soal B is strictly about thematic maps (curah hujan, lereng, geologi, penggunaan lahan). Do NOT demand mentions of longsor translasi for Soal B."* This eliminated false negatives and aligned AI scores with geography teaching standards.
 
 ### 🔄 3. Zero-Downtime Database Auto-Migrations
 When we expanded the database schema to store full student essay review records (`latestEssayAnswerA/B/C`, `latestEssayFeedback`, and `latestEssayRubric`), existing SQLite `local.db` files crashed with `no such column` errors. 
 
-Rather than forcing users to wipe their database or run manual CLI migrations, we built runtime auto-migration helpers (`ensureColumnsExist()`) inside [`src/routes/api/students/+server.ts`](file:///c:/Users/Zidan/Documents/IC-LEARN/src/routes/api/students/+server.ts) and [`src/routes/api/progress/+server.ts`](file:///c:/Users/Zidan/Documents/IC-LEARN/src/routes/api/progress/+server.ts). Before executing queries, the server inspects the SQLite table schema and runs targeted `ALTER TABLE` statements automatically.
+Rather than forcing users to wipe their database or run manual CLI migrations, we built runtime auto-migration helpers (`ensureColumnsExist()`) inside [`src/routes/api/students/+server.ts`](src/routes/api/students/+server.ts) and [`src/routes/api/progress/+server.ts`](src/routes/api/progress/+server.ts). Before executing queries, the server inspects the SQLite table schema and runs targeted `ALTER TABLE` statements automatically.
 
 ---
 
@@ -186,3 +186,9 @@ To deploy to **Vercel**:
 1. Connect your repository to **Vercel**.
 2. Add all environment variables listed above in **Project Settings ➔ Environment Variables**.
 3. Deploy!
+
+---
+
+## 📝 Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for the full history of releases, fixes, and changes.
